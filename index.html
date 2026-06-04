@@ -1,0 +1,728 @@
+html = f'''<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MK LissCil – Extensions de Cils & Lissage – Clermont-Ferrand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
+
+  :root {{
+    --loreal-white: #F4F2EE;
+    --loreal-off: #FAFAF7;
+    --loreal-dark: #1C1C1E;
+    --loreal-charcoal: #2E2D2C;
+    --loreal-gray: #6B6B6B;
+    --loreal-light: #EBEBEB;
+    --accent: #C4A96B;
+    --accent-light: #E8D9B8;
+    --whatsapp: #25D366;
+  }}
+
+  html {{ scroll-behavior: smooth; }}
+  body {{ font-family: 'Josefin Sans', sans-serif; background: var(--loreal-off); color: var(--loreal-charcoal); overflow-x: hidden; }}
+
+  /* NAV */
+  nav {{
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    background: rgba(244,242,238,0.97);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--loreal-light);
+    height: 70px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem;
+  }}
+
+  .nav-logo {{
+    display: flex; align-items: center; gap: 0.75rem; text-decoration: none;
+  }}
+
+  .nav-logo-img {{
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent);
+  }}
+
+  .nav-logo-text {{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600; letter-spacing: 0.1em;
+    color: var(--loreal-dark);
+    text-transform: uppercase;
+  }}
+
+  .nav-logo-text span {{ color: var(--accent); }}
+
+  .nav-links {{ display: flex; gap: 2rem; list-style: none; }}
+  .nav-links a {{ font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--loreal-gray); text-decoration: none; transition: color 0.2s; }}
+  .nav-links a:hover {{ color: var(--loreal-dark); }}
+
+  .nav-rdv {{
+    background: var(--loreal-dark) !important; color: var(--loreal-white) !important;
+    padding: 0.55rem 1.4rem; border-radius: 1px;
+  }}
+  .nav-rdv:hover {{ background: var(--accent) !important; color: #fff !important; }}
+
+  /* HERO */
+  .hero {{
+    min-height: 100vh;
+    background: var(--loreal-white);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding-top: 70px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }}
+
+  .hero-bg-text {{
+    position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18vw; font-weight: 300;
+    color: rgba(196,169,107,0.06);
+    letter-spacing: -0.02em;
+    user-select: none; pointer-events: none;
+    white-space: nowrap;
+    top: 50%; transform: translateY(-50%);
+  }}
+
+  .hero-inner {{
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0;
+  }}
+
+  /* L'Oréal style header */
+  .loreal-block {{
+    margin-bottom: 2rem;
+  }}
+
+  .lb-loreal {{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300;
+    letter-spacing: 0.55em;
+    color: var(--loreal-dark);
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 0.1rem;
+  }}
+
+  .lb-paris {{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.7rem; font-weight: 300;
+    letter-spacing: 0.7em;
+    color: var(--loreal-gray);
+    text-transform: uppercase;
+  }}
+
+  .hero-divider {{
+    display: flex; align-items: center; gap: 0.75rem;
+    margin: 1.5rem 0;
+    width: 280px;
+  }}
+
+  .hero-divider::before, .hero-divider::after {{
+    content: ''; flex: 1; height: 1px; background: var(--loreal-dark);
+  }}
+
+  .hero-diamond {{ width: 6px; height: 6px; background: var(--loreal-dark); transform: rotate(45deg); }}
+
+  /* Profile logo */
+  .hero-profile {{
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--loreal-dark);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  }}
+
+  .hero-name {{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--loreal-dark);
+    margin-bottom: 0.3rem;
+  }}
+
+  .hero-name span {{ color: var(--accent); }}
+
+  .hero-city {{
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.45em;
+    text-transform: uppercase; color: var(--loreal-gray);
+    margin-bottom: 0.75rem;
+  }}
+
+  .hero-flags {{ font-size: 1.3rem; margin-bottom: 2.5rem; letter-spacing: 0.2rem; }}
+
+  .hero-cta-row {{ display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; justify-content: center; margin-bottom: 4rem; }}
+
+  .btn-dark {{
+    display: inline-block;
+    background: var(--loreal-dark);
+    color: var(--loreal-white);
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 0.85rem 2.2rem;
+    text-decoration: none;
+    border-radius: 1px;
+    transition: all 0.25s;
+  }}
+  .btn-dark:hover {{ background: var(--accent); }}
+
+  .btn-whatsapp {{
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--whatsapp);
+    color: #fff;
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.85rem 2.2rem;
+    text-decoration: none;
+    border-radius: 1px;
+    transition: all 0.25s;
+  }}
+  .btn-whatsapp:hover {{ background: #1db954; }}
+
+  .btn-whatsapp svg {{ width: 18px; height: 18px; fill: currentColor; }}
+
+  /* PRICE CARDS strip */
+  .hero-prices {{
+    display: flex; gap: 0; border-top: 1px solid var(--loreal-light);
+    width: 100%; max-width: 800px;
+  }}
+
+  .hpc {{
+    flex: 1; padding: 1.5rem 1rem; text-align: center;
+    border-right: 1px solid var(--loreal-light);
+  }}
+  .hpc:last-child {{ border-right: none; }}
+
+  .hpc-label {{
+    font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--loreal-gray); margin-bottom: 0.4rem;
+  }}
+
+  .hpc-price {{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 600; color: var(--loreal-dark);
+  }}
+
+  /* SECTION COMMON */
+  .section-wrap {{ max-width: 1140px; margin: 0 auto; padding: 0 2rem; }}
+
+  section {{ padding: 6rem 2rem; }}
+
+  .s-eyebrow {{
+    font-size: 0.62rem; font-weight: 600; letter-spacing: 0.35em;
+    text-transform: uppercase; color: var(--loreal-gray);
+    text-align: center; margin-bottom: 0.6rem;
+  }}
+
+  .s-title {{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 300;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    text-align: center; color: var(--loreal-dark);
+    margin-bottom: 0.6rem;
+  }}
+
+  .s-rule {{
+    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+    margin-bottom: 3.5rem;
+  }}
+
+  .s-rule::before, .s-rule::after {{
+    content: ''; width: 50px; height: 1px; background: var(--loreal-dark);
+  }}
+
+  .s-rule-dot {{ width: 5px; height: 5px; background: var(--accent); border-radius: 50%; }}
+
+  /* CILS - dark bg */
+  .cils-section {{ background: var(--loreal-dark); }}
+  .cils-section .s-eyebrow {{ color: var(--accent); }}
+  .cils-section .s-title {{ color: #fff; font-weight: 300; }}
+  .cils-section .s-rule::before, .cils-section .s-rule::after {{ background: rgba(255,255,255,0.2); }}
+
+  .cils-grid {{
+    max-width: 1140px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 1px; background: rgba(255,255,255,0.08);
+  }}
+
+  .cil-card {{
+    background: var(--loreal-dark);
+    padding: 2.5rem 1.5rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+    display: flex; flex-direction: column;
+  }}
+
+  .cil-card:hover {{ background: #282624; }}
+
+  .cc-top {{
+    font-size: 0.55rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.75rem;
+  }}
+
+  .cc-name {{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 400; color: #fff;
+    margin-bottom: 0.5rem; line-height: 1.2;
+  }}
+
+  .cc-desc {{
+    font-size: 0.75rem; color: rgba(255,255,255,0.38);
+    line-height: 1.6; margin-bottom: auto;
+    padding-bottom: 1.5rem;
+  }}
+
+  .cc-price {{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem; font-weight: 300; color: #fff;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1.25rem;
+  }}
+
+  .cc-price span {{
+    font-size: 0.85rem; color: rgba(255,255,255,0.4); margin-left: 2px;
+  }}
+
+  /* DEPOSE */
+  .depose-strip {{
+    max-width: 1140px; margin: 2rem auto 0;
+    background: rgba(196,169,107,0.1);
+    border: 1px solid rgba(196,169,107,0.25);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 2rem; gap: 1rem; flex-wrap: wrap;
+  }}
+
+  .ds-label {{ font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); }}
+  .ds-name {{ font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: #fff; }}
+  .ds-price {{ font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--accent); }}
+
+  /* LISSAGE */
+  .lissage-section {{ background: var(--loreal-white); }}
+
+  .lissage-grid {{
+    max-width: 1000px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; background: var(--loreal-light);
+  }}
+
+  .lis-card {{
+    background: var(--loreal-off);
+    overflow: hidden;
+  }}
+
+  .lic-head {{
+    background: var(--loreal-dark);
+    padding: 2rem 1.75rem 1.5rem;
+    position: relative;
+  }}
+
+  .lic-num {{
+    position: absolute; top: 0.5rem; right: 1.25rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; font-weight: 300;
+    color: rgba(255,255,255,0.06); line-height: 1;
+  }}
+
+  .lic-eye {{
+    font-size: 0.58rem; font-weight: 600; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.4rem;
+  }}
+
+  .lic-name {{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 300; color: #fff; letter-spacing: 0.05em;
+  }}
+
+  .lic-body {{ padding: 1.75rem; }}
+
+  .lic-row {{
+    display: flex; justify-content: space-between;
+    font-size: 0.78rem; color: var(--loreal-gray);
+    padding: 0.6rem 0;
+    border-bottom: 1px dashed var(--loreal-light);
+  }}
+  .lic-row:last-child {{ border-bottom: none; }}
+  .lic-row strong {{ color: var(--loreal-charcoal); font-weight: 600; }}
+
+  .lic-price-row {{
+    display: flex; align-items: baseline; gap: 0.4rem;
+    margin-top: 1.25rem; padding-top: 1.25rem;
+    border-top: 1px solid var(--loreal-light);
+  }}
+
+  .lic-from {{ font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--loreal-gray); }}
+  .lic-price {{ font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: var(--loreal-dark); }}
+
+  /* SOINS */
+  .soins-section {{ background: #EFEDE8; }}
+
+  .soins-grid {{
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; background: rgba(0,0,0,0.06);
+  }}
+
+  .sk-card {{
+    background: var(--loreal-off);
+    padding: 2.5rem 2rem;
+    border-top: 3px solid var(--loreal-dark);
+  }}
+
+  .sk-icon {{ font-size: 2rem; margin-bottom: 1rem; display: block; }}
+
+  .sk-name {{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 400; color: var(--loreal-dark);
+    margin-bottom: 0.2rem;
+  }}
+
+  .sk-meta {{
+    font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--loreal-gray); margin-bottom: 1.5rem;
+  }}
+
+  .sk-price-row {{ display: flex; align-items: baseline; gap: 0.4rem; }}
+  .sk-from {{ font-size: 0.65rem; color: var(--loreal-gray); text-transform: uppercase; letter-spacing: 0.08em; }}
+  .sk-price {{ font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--loreal-dark); }}
+
+  /* MAP */
+  .map-section {{ background: var(--loreal-white); padding-top: 5rem; padding-bottom: 0; }}
+
+  .map-section .s-title {{ margin-bottom: 0.4rem; }}
+
+  .map-wrapper {{
+    width: 100%; height: 420px;
+    margin-top: 3rem;
+    overflow: hidden;
+    border-top: 3px solid var(--loreal-dark);
+  }}
+
+  .map-wrapper iframe {{
+    width: 100%; height: 100%; border: 0; display: block;
+  }}
+
+  /* RDV */
+  .rdv-section {{
+    background: var(--loreal-dark);
+    text-align: center;
+    padding: 7rem 2rem;
+  }}
+
+  .rdv-section .s-eyebrow {{ color: var(--accent); }}
+  .rdv-section .s-title {{ color: #fff; }}
+  .rdv-section .s-rule::before, .rdv-section .s-rule::after {{ background: rgba(255,255,255,0.15); }}
+
+  .rdv-desc {{ font-size: 0.85rem; color: rgba(255,255,255,0.45); max-width: 440px; margin: 0 auto 3rem; line-height: 1.8; letter-spacing: 0.05em; }}
+
+  .rdv-actions {{ display: flex; align-items: center; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }}
+
+  /* FOOTER */
+  footer {{
+    background: #0E0D0C;
+    padding: 3rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }}
+
+  .footer-logo-img {{
+    width: 56px; height: 56px; border-radius: 50%;
+    object-fit: cover; border: 2px solid var(--accent);
+    margin: 0 auto 1rem;
+    display: block;
+  }}
+
+  .footer-brand {{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 300; letter-spacing: 0.3em;
+    text-transform: uppercase; color: #fff;
+    margin-bottom: 0.3rem;
+  }}
+
+  .footer-brand span {{ color: var(--accent); }}
+
+  .footer-city {{ font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: #555; margin-bottom: 1.5rem; }}
+  .footer-flags {{ font-size: 1.2rem; margin-bottom: 1.5rem; letter-spacing: 0.3rem; }}
+  .footer-copy {{ font-size: 0.65rem; color: rgba(255,255,255,0.2); letter-spacing: 0.08em; }}
+
+  /* WA FLOATING */
+  .wa-float {{
+    position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 300;
+    width: 58px; height: 58px;
+    background: var(--whatsapp);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }}
+  .wa-float:hover {{ transform: scale(1.08); box-shadow: 0 6px 22px rgba(37,211,102,0.45); }}
+  .wa-float svg {{ width: 30px; height: 30px; fill: #fff; }}
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {{
+    nav {{ padding: 0 1.25rem; }}
+    .nav-links {{ display: none; }}
+    .cils-grid {{ grid-template-columns: 1fr 1fr; }}
+    .lissage-grid, .soins-grid {{ grid-template-columns: 1fr; }}
+    .hero-prices {{ flex-wrap: wrap; }}
+    .hpc {{ flex: 0 0 50%; }}
+  }}
+
+  @media (max-width: 500px) {{
+    .cils-grid {{ grid-template-columns: 1fr; }}
+  }}
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {{
+    from {{ opacity: 0; transform: translateY(18px); }}
+    to {{ opacity: 1; transform: translateY(0); }}
+  }}
+
+  .loreal-block {{ animation: fadeUp 0.7s 0.1s both; }}
+  .hero-divider {{ animation: fadeUp 0.5s 0.3s both; }}
+  .hero-profile {{ animation: fadeUp 0.6s 0.4s both; }}
+  .hero-name {{ animation: fadeUp 0.6s 0.5s both; }}
+  .hero-city {{ animation: fadeUp 0.5s 0.6s both; }}
+  .hero-flags {{ animation: fadeUp 0.5s 0.65s both; }}
+  .hero-cta-row {{ animation: fadeUp 0.5s 0.75s both; }}
+</style>
+</head>
+<body>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/33XXXXXXXXX?text=Bonjour%20MK%20LissCil%20!%20Je%20souhaite%20prendre%20rendez-vous." class="wa-float" target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="data:image/png;base64,{profile_b64}" alt="MK LissCil logo" class="nav-logo-img">
+    <span class="nav-logo-text">MK <span>Liss</span>Cil</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#cils">Cils</a></li>
+    <li><a href="#lissage">Lissage</a></li>
+    <li><a href="#soins">Soins</a></li>
+    <li><a href="#map">Localisation</a></li>
+    <li><a href="https://wa.me/33XXXXXXXXX" class="nav-rdv">Rendez-vous</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">BEAUTÉ</div>
+
+  <div class="hero-inner">
+    <div class="loreal-block">
+      <p class="lb-loreal">L'Oréal</p>
+      <p class="lb-paris">Paris</p>
+    </div>
+
+    <div class="hero-divider"><div class="hero-diamond"></div></div>
+
+    <img src="data:image/png;base64,{profile_b64}" alt="MK LissCil" class="hero-profile">
+
+    <h1 class="hero-name">MK <span>Liss</span>Cil</h1>
+    <p class="hero-city">Clermont-Ferrand · Auvergne · France</p>
+    <p class="hero-flags">🇫🇷 🇹🇷</p>
+
+    <div class="hero-cta-row">
+      <a href="#cils" class="btn-dark">Voir les prestations</a>
+      <a href="https://wa.me/33XXXXXXXXX?text=Bonjour%20!%20Je%20souhaite%20prendre%20rendez-vous." class="btn-whatsapp" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+
+    <div class="hero-prices">
+      <div class="hpc"><p class="hpc-label">Extensions Cils</p><p class="hpc-price">dès 40€</p></div>
+      <div class="hpc"><p class="hpc-label">Lissage</p><p class="hpc-price">dès 150€</p></div>
+      <div class="hpc"><p class="hpc-label">Soins Capillaires</p><p class="hpc-price">dès 100€</p></div>
+      <div class="hpc"><p class="hpc-label">Dépose</p><p class="hpc-price">10€</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXTENSIONS CILS -->
+<section class="cils-section" id="cils">
+  <p class="s-eyebrow">Prestations</p>
+  <h2 class="s-title">Extensions de Cils</h2>
+  <div class="s-rule"><div class="s-rule-dot"></div></div>
+
+  <div class="cils-grid">
+    <div class="cil-card">
+      <p class="cc-top">Classique</p>
+      <h3 class="cc-name">Cil à Cil</h3>
+      <p class="cc-desc">Une extension par cil naturel pour un regard naturellement ouvert et élégant.</p>
+      <p class="cc-price">40<span>€</span></p>
+    </div>
+    <div class="cil-card">
+      <p class="cc-top">Volume</p>
+      <h3 class="cc-name">Volume Mixte</h3>
+      <p class="cc-desc">Alliance du cil à cil et du volume russe pour un regard naturel et densifié.</p>
+      <p class="cc-price">50<span>€</span></p>
+    </div>
+    <div class="cil-card">
+      <p class="cc-top">Volume</p>
+      <h3 class="cc-name">Volume Russe</h3>
+      <p class="cc-desc">Bouquets de micro-extensions pour un volume intense et un regard profond.</p>
+      <p class="cc-price">60<span>€</span></p>
+    </div>
+    <div class="cil-card">
+      <p class="cc-top">Tendance</p>
+      <h3 class="cc-name">Volume Wispy</h3>
+      <p class="cc-desc">Mélange de longueurs variées pour un rendu soufflé et romantique très tendance.</p>
+      <p class="cc-price">60<span>€</span></p>
+    </div>
+    <div class="cil-card">
+      <p class="cc-top">Prestige</p>
+      <h3 class="cc-name">Méga Volume Russe</h3>
+      <p class="cc-desc">Le summum du volume : bouquets ultra-denses pour un regard spectaculaire.</p>
+      <p class="cc-price">70<span>€</span></p>
+    </div>
+  </div>
+
+  <div class="depose-strip">
+    <div>
+      <p class="ds-label">Prestation</p>
+      <p class="ds-name">Dépose d'extensions de cils</p>
+    </div>
+    <p class="ds-price">10€</p>
+  </div>
+</section>
+
+<!-- LISSAGE -->
+<section class="lissage-section" id="lissage">
+  <p class="s-eyebrow">Prestations</p>
+  <h2 class="s-title">Lissage Capillaire</h2>
+  <div class="s-rule"><div class="s-rule-dot"></div></div>
+
+  <div class="lissage-grid">
+    <div class="lis-card">
+      <div class="lic-head">
+        <span class="lic-num">01</span>
+        <p class="lic-eye">Lissage</p>
+        <h3 class="lic-name">Brésilien</h3>
+      </div>
+      <div class="lic-body">
+        <div class="lic-row"><span>Durée</span><strong>3h30</strong></div>
+        <div class="lic-row"><span>Résultat</span><strong>Lisse & Brillant</strong></div>
+        <div class="lic-row"><span>Tenue</span><strong>2–4 mois</strong></div>
+        <div class="lic-price-row"><span class="lic-from">À partir de</span><span class="lic-price">150€</span></div>
+      </div>
+    </div>
+    <div class="lis-card">
+      <div class="lic-head">
+        <span class="lic-num">02</span>
+        <p class="lic-eye">Lissage</p>
+        <h3 class="lic-name">Kératine</h3>
+      </div>
+      <div class="lic-body">
+        <div class="lic-row"><span>Durée</span><strong>3h30</strong></div>
+        <div class="lic-row"><span>Résultat</span><strong>Lisse & Nourri</strong></div>
+        <div class="lic-row"><span>Tenue</span><strong>3–5 mois</strong></div>
+        <div class="lic-price-row"><span class="lic-from">À partir de</span><span class="lic-price">150€</span></div>
+      </div>
+    </div>
+    <div class="lis-card">
+      <div class="lic-head">
+        <span class="lic-num">03</span>
+        <p class="lic-eye">Lissage</p>
+        <h3 class="lic-name">Tanin</h3>
+      </div>
+      <div class="lic-body">
+        <div class="lic-row"><span>Durée</span><strong>3h30</strong></div>
+        <div class="lic-row"><span>Résultat</span><strong>Naturel & Doux</strong></div>
+        <div class="lic-row"><span>Tenue</span><strong>3–4 mois</strong></div>
+        <div class="lic-price-row"><span class="lic-from">À partir de</span><span class="lic-price">150€</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOINS -->
+<section class="soins-section" id="soins">
+  <p class="s-eyebrow">Prestations</p>
+  <h2 class="s-title">Soins Capillaires</h2>
+  <div class="s-rule"><div class="s-rule-dot"></div></div>
+
+  <div class="soins-grid">
+    <div class="sk-card">
+      <span class="sk-icon">💊</span>
+      <h3 class="sk-name">Soin Botox</h3>
+      <p class="sk-meta">1h30 · Restructurant</p>
+      <div class="sk-price-row"><span class="sk-from">à partir de</span><span class="sk-price">110€</span></div>
+    </div>
+    <div class="sk-card">
+      <span class="sk-icon">🧴</span>
+      <h3 class="sk-name">Soin Kératine</h3>
+      <p class="sk-meta">1h30 · Nourrissant</p>
+      <div class="sk-price-row"><span class="sk-from">à partir de</span><span class="sk-price">100€</span></div>
+    </div>
+    <div class="sk-card">
+      <span class="sk-icon">✂️</span>
+      <h3 class="sk-name">Coupes-Fourches</h3>
+      <p class="sk-meta">45 min · Pointes fraîches</p>
+      <div class="sk-price-row"><span class="sk-price" style="font-size:1.8rem">60€</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section" id="map">
+  <p class="s-eyebrow">Localisation</p>
+  <h2 class="s-title">Nous Trouver</h2>
+  <div class="s-rule"><div class="s-rule-dot"></div></div>
+
+  <div class="map-wrapper">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d87042.64697596376!2d3.025894!3d45.779622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f71c6d7c9b7003%3A0xb4f56432ef0b20b0!2sClermont-Ferrand!5e0!3m2!1sfr!2sfr!4v1700000000000"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Clermont-Ferrand carte">
+    </iframe>
+  </div>
+</section>
+
+<!-- RDV -->
+<section class="rdv-section" id="rdv">
+  <p class="s-eyebrow">Contact</p>
+  <h2 class="s-title">Prendre Rendez-vous</h2>
+  <div class="s-rule"><div class="s-rule-dot"></div></div>
+  <p class="rdv-desc">Réservez votre séance dès maintenant. Contactez-moi directement sur WhatsApp pour un rendez-vous rapide à Clermont-Ferrand.</p>
+  <div class="rdv-actions">
+    <a href="https://wa.me/33XXXXXXXXX?text=Bonjour%20MK%20LissCil%20!%20Je%20souhaite%20prendre%20rendez-vous." class="btn-whatsapp" target="_blank" rel="noopener" style="font-size:0.8rem; padding:1rem 2.5rem;">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Contacter sur WhatsApp
+    </a>
+    <a href="tel:+33XXXXXXXXX" class="btn-dark" style="padding:1rem 2.5rem;">📞 Appeler</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="data:image/png;base64,{profile_b64}" alt="MK LissCil" class="footer-logo-img">
+  <p class="footer-brand">MK <span>Liss</span>Cil</p>
+  <p class="footer-city">Clermont-Ferrand · Auvergne · France</p>
+  <p class="footer-flags">🇫🇷 🇹🇷</p>
+  <p class="footer-copy">© 2025 MK LissCil · Tous droits réservés</p>
+</footer>
+
+</body>
+</html>'''
