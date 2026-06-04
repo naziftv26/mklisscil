@@ -1,252 +1,835 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MK LissCil – Extensions de Cils & Lissage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #faf6f1;
+      --warm-white: #fff9f4;
+      --blush: #e8c5b0;
+      --rose: #c9967a;
+      --mocha: #6b4c3b;
+      --espresso: #2e1a14;
+      --gold: #c4a882;
+      --gold-light: #e8d9c4;
+      --text: #3a2418;
+      --text-light: #8a6a58;
+    }
 
-<title>MK LissCil – Extensions de Cils & Lissage</title>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    html { scroll-behavior: smooth; }
 
-<style>
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
 
-:root {
-  --dark: #1C1C1E;
-  --light: #F4F2EE;
-  --gray: #6B6B6B;
-  --accent: #C4A96B;
-  --whatsapp: #25D366;
-}
+    /* NOISE OVERLAY */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
 
-body {
-  font-family: 'Josefin Sans', sans-serif;
-  background: var(--light);
-  color: var(--dark);
-}
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(250,246,241,0.95), rgba(250,246,241,0));
+      backdrop-filter: blur(2px);
+    }
 
-/* NAV */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 70px;
-  background: rgba(255,255,255,0.95);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 30px;
-  border-bottom: 1px solid #ddd;
-  z-index: 1000;
-}
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--espresso);
+      text-decoration: none;
+    }
 
-.nav-logo {
-  font-weight: bold;
-  font-size: 20px;
-  text-decoration: none;
-  color: var(--dark);
-}
+    .logo-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 2px solid var(--gold);
+      margin-right: 10px;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo span {
+      color: var(--rose);
+    }
 
-.nav-logo span {
-  color: var(--accent);
-}
+    nav {
+      display: flex;
+      gap: 36px;
+    }
 
-/* HERO */
-.hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding-top: 70px;
-}
+    nav a {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
 
-.hero h1 {
-  font-size: 40px;
-  margin-bottom: 10px;
-}
+    nav a:hover { color: var(--rose); }
 
-.hero p {
-  color: var(--gray);
-}
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
 
-/* SECTIONS */
-section {
-  padding: 80px 20px;
-  max-width: 1000px;
-  margin: auto;
-}
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 64px 80px;
+      position: relative;
+      z-index: 2;
+    }
 
-h2 {
-  text-align: center;
-  margin-bottom: 40px;
-}
+    .hero-eyebrow {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
 
-/* CARDS */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-}
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(56px, 6vw, 96px);
+      font-weight: 300;
+      line-height: 1.0;
+      color: var(--espresso);
+      margin-bottom: 12px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.4s;
+    }
 
-.card {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid #eee;
-  text-align: center;
-}
+    .hero-title em {
+      font-style: italic;
+      color: var(--rose);
+    }
 
-.price {
-  font-size: 22px;
-  color: var(--accent);
-  margin-top: 10px;
-}
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 2vw, 28px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-light);
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.6s;
+    }
 
-/* WHATSAPP */
-.whatsapp {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: var(--whatsapp);
-  color: white;
-  padding: 15px;
-  border-radius: 50%;
-  text-decoration: none;
-  font-size: 22px;
-}
-</style>
+    .hero-desc {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--text-light);
+      max-width: 340px;
+      margin-bottom: 56px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.8s;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 1s;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 16px 40px;
+      background: var(--espresso);
+      color: var(--cream);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--mocha);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 2px;
+      transition: color 0.3s;
+    }
+
+    .btn-ghost:hover { color: var(--rose); }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-visual {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--blush) 0%, var(--gold-light) 40%, var(--rose) 100%);
+    }
+
+    .hero-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 80px;
+      left: -30px;
+      width: 160px;
+      height: 160px;
+      background: var(--warm-white);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(46,26,20,0.15);
+      animation: fadeIn 1s ease forwards 1.2s;
+      opacity: 0;
+    }
+
+    .hero-badge .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 300;
+      color: var(--rose);
+      line-height: 1;
+    }
+
+    .hero-badge .label {
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+
+    .floating-icon {
+      position: absolute;
+      font-size: 80px;
+      opacity: 0.18;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-icon:nth-child(2) { top: 20%; right: 15%; animation-delay: 0s; }
+    .floating-icon:nth-child(3) { top: 50%; right: 30%; animation-delay: 2s; font-size: 50px; }
+    .floating-icon:nth-child(4) { bottom: 25%; right: 10%; animation-delay: 4s; font-size: 60px; }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 64px;
+    }
+
+    /* SECTION */
+    section {
+      padding: 100px 64px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+
+    .section-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      color: var(--rose);
+      font-style: italic;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 300;
+      color: var(--espresso);
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--gold-light);
+      margin-left: 16px;
+    }
+
+    /* SERVICES GRID */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2px;
+      background: var(--gold-light);
+    }
+
+    .service-card {
+      background: var(--warm-white);
+      padding: 40px 36px;
+      transition: background 0.3s, transform 0.3s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      height: 2px;
+      width: 0;
+      background: var(--rose);
+      transition: width 0.4s ease;
+    }
+
+    .service-card:hover::before { width: 100%; }
+    .service-card:hover { background: var(--cream); transform: translateY(-4px); }
+
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--espresso);
+      margin-bottom: 8px;
+    }
+
+    .service-desc {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--text-light);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .service-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 300;
+      color: var(--rose);
+    }
+
+    .service-price span {
+      font-size: 14px;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+    }
+
+    /* LISSAGES – wide cards */
+    .lissage-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .lissage-card {
+      background: var(--espresso);
+      padding: 48px 40px;
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .lissage-card::after {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      background: rgba(196,168,130,0.1);
+      transition: transform 0.4s ease;
+    }
+
+    .lissage-card:hover { transform: translateY(-6px); }
+    .lissage-card:hover::after { transform: scale(1.5); }
+
+    .lissage-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 300;
+      margin-bottom: 12px;
+    }
+
+    .lissage-duration {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+
+    .lissage-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 44px;
+      font-weight: 300;
+      color: var(--blush);
+    }
+
+    /* SOINS */
+    .soins-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--gold-light);
+    }
+
+    .soin-card {
+      background: var(--cream);
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 220px;
+      transition: background 0.3s;
+    }
+
+    .soin-card:hover { background: var(--warm-white); }
+
+    .soin-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--espresso);
+    }
+
+    .soin-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 24px;
+    }
+
+    .soin-duration {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    .soin-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--rose);
+    }
+
+    /* CONTACT STRIP */
+    .contact-strip {
+      background: var(--espresso);
+      padding: 80px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .contact-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 60px);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.1;
+    }
+
+    .contact-text h2 em {
+      font-style: italic;
+      color: var(--blush);
+    }
+
+    .contact-text p {
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 16px;
+    }
+
+    .btn-whatsapp {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #25D366;
+      color: white;
+      padding: 20px 40px;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: background 0.3s, transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1ebe5d;
+      transform: translateY(-2px);
+    }
+
+    .btn-whatsapp svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 40px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--gold-light);
+    }
+
+    footer .logo { font-size: 18px; }
+
+    footer p {
+      font-size: 11px;
+      color: var(--text-light);
+      letter-spacing: 0.1em;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* SCROLL REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* FIXED WHATSAPP */
+    .whatsapp-fixed {
+      position: fixed;
+      right: 28px;
+      bottom: 32px;
+      z-index: 200;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25D366;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+      transition: transform 0.25s, box-shadow 0.25s;
+      text-decoration: none;
+    }
+
+    .whatsapp-fixed:hover {
+      transform: scale(1.12) translateY(-3px);
+      box-shadow: 0 10px 32px rgba(37,211,102,0.55);
+    }
+
+    /* Pulse ring */
+    .whatsapp-fixed::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid rgba(37,211,102,0.4);
+      animation: pulse-ring 2s ease-out infinite;
+    }
+
+    @keyframes pulse-ring {
+      0%   { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(1.5); }
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      header { padding: 20px 24px; }
+      nav { display: none; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-left {
+        padding: 100px 24px 60px;
+      }
+
+      .hero-right {
+        height: 300px;
+      }
+
+      section { padding: 64px 24px; }
+      .divider { margin: 0 24px; }
+
+      .lissage-grid,
+      .soins-grid { grid-template-columns: 1fr; }
+
+      .contact-strip {
+        flex-direction: column;
+        gap: 40px;
+        padding: 60px 24px;
+        text-align: center;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 16px;
+        padding: 32px 24px;
+        text-align: center;
+      }
+
+      .hero-badge { display: none; }
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">MK <span>LissCil</span></a>
-</nav>
+  <!-- HEADER -->
+  <header>
+    <a href="#" class="logo">
+      <img src="data:image/jpeg;base64,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" alt="MK LissCil" class="logo-avatar" />
+      MK <span>Liss</span>Cil
+    </a>
+    <nav>
+      <a href="#cils">Extensions</a>
+      <a href="#lissages">Lissages</a>
+      <a href="#soins">Soins</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-<!-- HERO -->
-<section class="hero">
-
-  <!-- IMAGE PROFIL -->
-  <img src="logo123.png"
-       alt="MK LissCil"
-       style="
-         width:140px;
-         height:140px;
-         border-radius:50%;
-         object-fit:cover;
-         border:3px solid #C4A96B;
-         margin-bottom:20px;
-         box-shadow:0 10px 30px rgba(0,0,0,0.2);
-       ">
-
-  <h1>MK LissCil</h1>
-  <p>Extensions de cils • Lissage • Soins capillaires</p>
-
-</section>
-
-<!-- CILS -->
-<section>
-  <h2>Extensions de Cils</h2>
-  <div class="grid">
-
-    <div class="card">
-      <h3>Cil à Cil</h3>
-      <p>Naturel et élégant</p>
-      <div class="price">40€</div>
+  <!-- HERO -->
+  <section class="hero" style="padding:0">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Beauté • Soin • Élégance</p>
+      <h1 class="hero-title">MK<br><em>LissCil</em></h1>
+      <p class="hero-subtitle">L'art de sublimer votre regard</p>
+      <p class="hero-desc">Extensions de cils sur mesure, lissages professionnels et soins capillaires d'exception. Parce que chaque détail compte.</p>
+      <div class="cta-group">
+        <a href="#cils" class="btn-primary">Découvrir nos soins</a>
+        <a href="#contact" class="btn-ghost">Prendre RDV →</a>
+      </div>
     </div>
-
-    <div class="card">
-      <h3>Volume Mixte</h3>
-      <p>Naturel + volume</p>
-      <div class="price">50€</div>
+    <div class="hero-right">
+      <div class="hero-visual">
+        <div class="floating-icon">✦</div>
+        <div class="floating-icon">◇</div>
+        <div class="floating-icon">✦</div>
+      </div>
+      <div class="hero-badge">
+        <div class="num">5★</div>
+        <div class="label">Expertise<br>certifiée</div>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>Volume Russe</h3>
-      <p>Regard intense</p>
-      <div class="price">60€</div>
+  <div class="divider"></div>
+
+  <!-- EXTENSIONS DE CILS -->
+  <section id="cils">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Extensions de Cils</h2>
+      <div class="section-line"></div>
     </div>
-
-    <div class="card">
-      <h3>Wispy</h3>
-      <p>Effet fluffy tendance</p>
-      <div class="price">60€</div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-name">Cil à Cil</div>
+        <div class="service-desc">Naturel & élégant</div>
+        <div class="service-price">40<span>€</span></div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-name">Volume Mixte</div>
+        <div class="service-desc">Naturel + volume</div>
+        <div class="service-price">50<span>€</span></div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-name">Volume Russe</div>
+        <div class="service-desc">Regard intense</div>
+        <div class="service-price">60<span>€</span></div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-name">Wispy</div>
+        <div class="service-desc">Effet fluffy tendance</div>
+        <div class="service-price">60<span>€</span></div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-name">Mega Volume</div>
+        <div class="service-desc">Ultra volume</div>
+        <div class="service-price">70<span>€</span></div>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>Mega Volume</h3>
-      <p>Ultra volume</p>
-      <div class="price">70€</div>
+  <div class="divider"></div>
+
+  <!-- LISSAGES -->
+  <section id="lissages" style="background: var(--warm-white)">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Lissages</h2>
+      <div class="section-line"></div>
     </div>
+    <div class="lissage-grid">
+      <div class="lissage-card reveal">
+        <div class="lissage-name">Lissage Brésilien</div>
+        <div class="lissage-duration">⏱ 3h30</div>
+        <div class="lissage-price">150<span style="font-size:20px;font-family:Jost;font-weight:300">€</span></div>
+      </div>
+      <div class="lissage-card reveal">
+        <div class="lissage-name">Lissage Kératine</div>
+        <div class="lissage-duration">⏱ 3h30</div>
+        <div class="lissage-price">150<span style="font-size:20px;font-family:Jost;font-weight:300">€</span></div>
+      </div>
+      <div class="lissage-card reveal">
+        <div class="lissage-name">Lissage Tanin</div>
+        <div class="lissage-duration">⏱ 3h30</div>
+        <div class="lissage-price">150<span style="font-size:20px;font-family:Jost;font-weight:300">€</span></div>
+      </div>
+    </div>
+  </section>
 
+  <div class="divider"></div>
+
+  <!-- SOINS CAPILLAIRES -->
+  <section id="soins">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Soins Capillaires</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="soins-grid">
+      <div class="soin-card reveal">
+        <div class="soin-name">Botox Capillaire</div>
+        <div class="soin-meta">
+          <span class="soin-duration">⏱ 1h30</span>
+          <span class="soin-price">110€</span>
+        </div>
+      </div>
+      <div class="soin-card reveal">
+        <div class="soin-name">Soin Kératine</div>
+        <div class="soin-meta">
+          <span class="soin-duration">⏱ 1h30</span>
+          <span class="soin-price">100€</span>
+        </div>
+      </div>
+      <div class="soin-card reveal">
+        <div class="soin-name">Coupe Fourches</div>
+        <div class="soin-meta">
+          <span class="soin-duration">⏱ 45 min</span>
+          <span class="soin-price">60€</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT STRIP -->
+  <div class="contact-strip" id="contact">
+    <div class="contact-text">
+      <h2>Prenons<br><em>rendez-vous</em></h2>
+      <p>Disponible 7j/7 sur WhatsApp</p>
+    </div>
+    <a href="https://wa.me/33XXXXXXXXX" class="btn-whatsapp">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Nous contacter
+    </a>
   </div>
-</section>
 
-<!-- LISSAGE -->
-<section>
-  <h2>Lissages</h2>
-  <div class="grid">
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="logo">MK <span>Liss</span>Cil</a>
+    <p>Extensions de Cils • Lissage • Soins Capillaires</p>
+    <p style="font-size:10px;letter-spacing:0.1em;color:var(--text-light)">© 2025 MK LissCil</p>
+  </footer>
 
-    <div class="card">
-      <h3>Lissage Brésilien</h3>
-      <p>3h30</p>
-      <div class="price">150€</div>
-    </div>
+  <!-- FIXED WHATSAPP BUTTON -->
+  <a href="https://wa.me/33XXXXXXXXX" class="whatsapp-fixed" title="Nous contacter sur WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
 
-    <div class="card">
-      <h3>Lissage Kératine</h3>
-      <p>3h30</p>
-      <div class="price">150€</div>
-    </div>
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
 
-    <div class="card">
-      <h3>Lissage Tanin</h3>
-      <p>3h30</p>
-      <div class="price">150€</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- SOINS -->
-<section>
-  <h2>Soins Capillaires</h2>
-  <div class="grid">
-
-    <div class="card">
-      <h3>Botox</h3>
-      <p>1h30</p>
-      <div class="price">110€</div>
-    </div>
-
-    <div class="card">
-      <h3>Kératine</h3>
-      <p>1h30</p>
-      <div class="price">100€</div>
-    </div>
-
-    <div class="card">
-      <h3>Coupes fourches</h3>
-      <p>45 min</p>
-      <div class="price">60€</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- WHATSAPP -->
-<a class="whatsapp" href="https://wa.me/33XXXXXXXXX" target="_blank">
-  💬
-</a>
-
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
