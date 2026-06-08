@@ -509,19 +509,281 @@ footer .f-right { display: flex; justify-content: flex-end; align-items: center;
   </div>
 </section>
 
-<div class="divider"></div>
+<style>
+/* ── IG SECTION ── */
+.ig-section {
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  background: #0e0709;
+}
+.ig-section-inner {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  min-height: 600px;
+}
+/* LEFT PANEL */
+.ig-left {
+  padding: 72px 56px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; z-index: 2;
+}
+.ig-left::after {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 1px; height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(240,148,51,0.3), rgba(188,24,136,0.3), transparent);
+}
+.ig-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 14px; border-radius: 40px;
+  border: 1px solid rgba(240,148,51,0.35);
+  margin-bottom: 28px; width: fit-content;
+}
+.ig-badge-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  animation: ig-pulse 2s ease-in-out infinite;
+}
+@keyframes ig-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(1.3)} }
+.ig-badge span {
+  font-size: 9px; font-weight: 500; letter-spacing: 0.22em;
+  text-transform: uppercase; color: rgba(240,213,200,0.7);
+}
+.ig-left h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 44px; font-weight: 300; line-height: 1.1;
+  color: #fff; margin-bottom: 8px;
+}
+.ig-left h2 em { font-style: italic; color: transparent;
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  -webkit-background-clip: text; background-clip: text;
+}
+.ig-handle-row {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 28px;
+}
+.ig-handle-text {
+  font-size: 13px; font-weight: 300; color: rgba(240,213,200,0.55);
+  letter-spacing: 0.05em;
+}
+.ig-divider-line {
+  width: 32px; height: 1px;
+  background: linear-gradient(to right, rgba(240,148,51,0.5), rgba(188,24,136,0.5));
+}
+.ig-desc {
+  font-size: 13px; font-weight: 300; line-height: 1.9;
+  color: rgba(240,213,200,0.55); margin-bottom: 40px;
+  max-width: 280px;
+}
+.ig-stats-row {
+  display: flex; gap: 28px; margin-bottom: 44px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(240,213,200,0.1);
+}
+.ig-stat { text-align: center; }
+.ig-stat-n {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 300; color: #fff; line-height: 1;
+}
+.ig-stat-l {
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(240,213,200,0.4); margin-top: 4px;
+}
+.btn-ig-modern {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 32px; border-radius: 2px;
+  background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #fff; text-decoration: none;
+  font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+  transition: opacity .3s, transform .25s, box-shadow .3s;
+  box-shadow: 0 8px 28px rgba(220,39,67,0.35);
+  width: fit-content;
+}
+.btn-ig-modern:hover { opacity: .88; transform: translateY(-2px); box-shadow: 0 14px 40px rgba(220,39,67,0.45); }
 
-<!-- IG TEASER -->
-<section class="section section-alt">
-  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px" class="reveal">
-    <div>
-      <div class="s-eyebrow">Instagram</div>
-      <h2 class="s-title">@mk_lisscil63</h2>
+/* RIGHT — mosaic */
+.ig-mosaic {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 3px;
+}
+.ig-tile {
+  position: relative; overflow: hidden; cursor: pointer;
+  display: block; text-decoration: none;
+  background: #1a0a10;
+}
+.ig-tile:nth-child(1) { grid-column: 1; grid-row: 1 / 3; } /* tall left */
+.ig-tile:nth-child(4) { grid-column: 3; grid-row: 1 / 3; } /* tall right */
+
+.ig-tile-bg {
+  width: 100%; height: 100%; min-height: 180px;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform .6s cubic-bezier(0.16,1,0.3,1);
+}
+.ig-tile:hover .ig-tile-bg { transform: scale(1.06); }
+
+.ig-tile-over {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(240,148,51,0) 0%, rgba(188,24,136,0) 100%);
+  transition: background .4s;
+  display: flex; align-items: flex-end; padding: 18px;
+}
+.ig-tile:hover .ig-tile-over {
+  background: linear-gradient(135deg, rgba(240,148,51,0.35) 0%, rgba(188,24,136,0.35) 100%);
+}
+.ig-tile-label {
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0); transition: color .35s;
+  font-weight: 400; line-height: 1.5;
+}
+.ig-tile:hover .ig-tile-label { color: rgba(255,255,255,0.9); }
+.ig-tile-heart {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%) scale(0);
+  font-size: 32px; color: white; opacity: 0;
+  transition: transform .3s cubic-bezier(0.34,1.56,0.64,1), opacity .3s;
+}
+.ig-tile:hover .ig-tile-heart { transform: translate(-50%,-50%) scale(1); opacity: 1; }
+
+.ig-tile-emoji { font-size: 52px; opacity: 0.55; }
+
+/* bottom CTA bar */
+.ig-cta-bar {
+  grid-column: 1 / -1;
+  background: rgba(240,148,51,0.06);
+  border-top: 1px solid rgba(240,148,51,0.15);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px 28px; gap: 20px;
+}
+.ig-cta-bar span {
+  font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(240,213,200,0.5);
+}
+.ig-cta-bar a {
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: transparent;
+  background: linear-gradient(135deg, #f09433, #bc1888);
+  -webkit-background-clip: text; background-clip: text;
+  text-decoration: none; font-weight: 500;
+  transition: opacity .3s;
+}
+.ig-cta-bar a:hover { opacity: .75; }
+
+@media(max-width:768px){
+  .ig-section-inner { grid-template-columns: 1fr; }
+  .ig-left { padding: 48px 24px; }
+  .ig-left::after { display: none; }
+  .ig-mosaic { grid-template-columns: repeat(3,1fr); grid-template-rows: auto; }
+  .ig-tile:nth-child(1), .ig-tile:nth-child(4) { grid-column: auto; grid-row: auto; }
+}
+</style>
+
+<!-- IG TEASER PREMIUM -->
+<section class="ig-section">
+  <div class="ig-section-inner">
+
+    <!-- LEFT: profile info -->
+    <div class="ig-left reveal">
+      <div class="ig-badge">
+        <div class="ig-badge-dot"></div>
+        <span>Instagram</span>
+      </div>
+      <h2>Suivez nos<br><em>créations</em></h2>
+      <div class="ig-handle-row">
+        <div class="ig-divider-line"></div>
+        <span class="ig-handle-text">@mk_lisscil63</span>
+      </div>
+      <p class="ig-desc">Extensions, lissages, soins — chaque transformation racontée en images. Rejoignez notre communauté.</p>
+      <div class="ig-stats-row">
+        <div class="ig-stat">
+          <div class="ig-stat-n">✦</div>
+          <div class="ig-stat-l">Expertises</div>
+        </div>
+        <div class="ig-stat">
+          <div class="ig-stat-n">7j/7</div>
+          <div class="ig-stat-l">Disponible</div>
+        </div>
+        <div class="ig-stat">
+          <div class="ig-stat-n">5★</div>
+          <div class="ig-stat-l">Qualité</div>
+        </div>
+      </div>
+      <a href="https://www.instagram.com/mk_lisscil63" target="_blank" class="btn-ig-modern">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Voir le profil
+      </a>
     </div>
-    <a href="instagram.html" class="btn-ig"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> Voir le profil</a>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:3px" class="reveal">
-    <a href="instagram.html" class="ig-post" style="aspect-ratio:1;overflow:hidden;display:block;text-decoration:none"><div class="ig-post-inner" style="background:linear-gradient(135deg,hsl(20,40%,82%),hsl(50,35%,75%))"><span class="ig-icon">💅</span></div><div class="ig-overlay"><span class="ig-overlay-icon">♥</span></div></a><a href="instagram.html" class="ig-post" style="aspect-ratio:1;overflow:hidden;display:block;text-decoration:none"><div class="ig-post-inner" style="background:linear-gradient(135deg,hsl(35,40%,82%),hsl(65,35%,75%))"><span class="ig-icon">✨</span></div><div class="ig-overlay"><span class="ig-overlay-icon">♥</span></div></a><a href="instagram.html" class="ig-post" style="aspect-ratio:1;overflow:hidden;display:block;text-decoration:none"><div class="ig-post-inner" style="background:linear-gradient(135deg,hsl(15,40%,82%),hsl(45,35%,75%))"><span class="ig-icon">👁</span></div><div class="ig-overlay"><span class="ig-overlay-icon">♥</span></div></a><a href="instagram.html" class="ig-post" style="aspect-ratio:1;overflow:hidden;display:block;text-decoration:none"><div class="ig-post-inner" style="background:linear-gradient(135deg,hsl(25,40%,82%),hsl(55,35%,75%))"><span class="ig-icon">💫</span></div><div class="ig-overlay"><span class="ig-overlay-icon">♥</span></div></a><a href="instagram.html" class="ig-post" style="aspect-ratio:1;overflow:hidden;display:block;text-decoration:none"><div class="ig-post-inner" style="background:linear-gradient(135deg,hsl(40,40%,82%),hsl(70,35%,75%))"><span class="ig-icon">🌸</span></div><div class="ig-overlay"><span class="ig-overlay-icon">♥</span></div></a><a href="instagram.html" class="ig-post" style="aspect-ratio:1;overflow:hidden;display:block;text-decoration:none"><div class="ig-post-inner" style="background:linear-gradient(135deg,hsl(18,40%,82%),hsl(48,35%,75%))"><span class="ig-icon">✦</span></div><div class="ig-overlay"><span class="ig-overlay-icon">♥</span></div></a>
+
+    <!-- RIGHT: mosaic -->
+    <div class="ig-mosaic reveal reveal-d1">
+      <!-- tile 1 — tall left -->
+      <a href="https://www.instagram.com/mk_lisscil63" target="_blank" class="ig-tile">
+        <div class="ig-tile-bg" style="background:linear-gradient(160deg,#3d1a2a,#7a2840,#c9687a)">
+          <span class="ig-tile-emoji">💅</span>
+        </div>
+        <div class="ig-tile-over">
+          <span class="ig-tile-label">Extensions<br>Volume Russe</span>
+        </div>
+        <span class="ig-tile-heart">♥</span>
+      </a>
+      <!-- tile 2 -->
+      <a href="https://www.instagram.com/mk_lisscil63" target="_blank" class="ig-tile">
+        <div class="ig-tile-bg" style="background:linear-gradient(135deg,#2a1a30,#5c2d5e,#c06090)">
+          <span class="ig-tile-emoji">✨</span>
+        </div>
+        <div class="ig-tile-over">
+          <span class="ig-tile-label">Wispy — résultat</span>
+        </div>
+        <span class="ig-tile-heart">♥</span>
+      </a>
+      <!-- tile 3 -->
+      <a href="https://www.instagram.com/mk_lisscil63" target="_blank" class="ig-tile">
+        <div class="ig-tile-bg" style="background:linear-gradient(135deg,#1e1228,#4a2050,#9040a0)">
+          <span class="ig-tile-emoji">👁</span>
+        </div>
+        <div class="ig-tile-over">
+          <span class="ig-tile-label">Cil à Cil naturel</span>
+        </div>
+        <span class="ig-tile-heart">♥</span>
+      </a>
+      <!-- tile 4 — tall right -->
+      <a href="https://www.instagram.com/mk_lisscil63" target="_blank" class="ig-tile">
+        <div class="ig-tile-bg" style="background:linear-gradient(160deg,#1a0d20,#6030a0,#bc1888)">
+          <span class="ig-tile-emoji">💫</span>
+        </div>
+        <div class="ig-tile-over">
+          <span class="ig-tile-label">Lissage<br>Brésilien</span>
+        </div>
+        <span class="ig-tile-heart">♥</span>
+      </a>
+      <!-- tile 5 -->
+      <a href="https://www.instagram.com/mk_lisscil63" target="_blank" class="ig-tile">
+        <div class="ig-tile-bg" style="background:linear-gradient(135deg,#3a1020,#8a2040,#e06050)">
+          <span class="ig-tile-emoji">🌸</span>
+        </div>
+        <div class="ig-tile-over">
+          <span class="ig-tile-label">Soin Botox</span>
+        </div>
+        <span class="ig-tile-heart">♥</span>
+      </a>
+      <!-- tile 6 -->
+      <a href="https://www.instagram.com/mk_lisscil63" target="_blank" class="ig-tile">
+        <div class="ig-tile-bg" style="background:linear-gradient(135deg,#2a1818,#703020,#e07030)">
+          <span class="ig-tile-emoji">✦</span>
+        </div>
+        <div class="ig-tile-over">
+          <span class="ig-tile-label">Avant / Après</span>
+        </div>
+        <span class="ig-tile-heart">♥</span>
+      </a>
+
+      <!-- CTA bar at bottom -->
+      <div class="ig-cta-bar">
+        <span>Découvrez toutes nos réalisations</span>
+        <a href="https://www.instagram.com/mk_lisscil63" target="_blank">@mk_lisscil63 →</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
