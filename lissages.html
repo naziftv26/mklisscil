@@ -67,6 +67,7 @@ header.scrolled {
   font-family: 'Playfair Display', serif;
   font-size: 18px; font-weight: 400; letter-spacing: 0.12em;
   color: var(--espresso);
+  position: relative; z-index: 600;
 }
 .logo-avatar {
   width: 40px; height: 40px; border-radius: 50%;
@@ -93,22 +94,53 @@ nav a:hover, nav a.active { color: var(--rose); background: rgba(200,137,106,0.1
 }
 .nav-ig:hover { border-color: var(--rose) !important; color: var(--rose) !important; background: rgba(200,137,106,0.08) !important; }
 
-/* ── FIXED WA ── */
-.wa-fixed {
+/* ── HAMBURGER (mobile) ── */
+.hbg {
+  display: none;
+  width: 40px; height: 40px;
+  border: none; background: transparent;
+  cursor: pointer; position: relative; z-index: 600;
+  flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+}
+.hbg span {
+  width: 22px; height: 1.5px; background: var(--espresso);
+  transition: transform 0.3s, opacity 0.3s;
+}
+.hbg.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hbg.open span:nth-child(2) { opacity: 0; }
+.hbg.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+.mobile-nav {
+  position: fixed; inset: 0; z-index: 550;
+  background: var(--cream);
+  flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  opacity: 0; transition: opacity 0.35s ease;
+}
+.mobile-nav.open { opacity: 1; }
+.mobile-nav a {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 400; color: var(--espresso);
+  text-decoration: none; padding: 14px 0;
+  display: flex; align-items: center; gap: 10px;
+}
+.mobile-nav a.active, .mobile-nav a:hover { color: var(--rose); }
+
+/* ── FIXED INSTAGRAM BUTTON ── */
+.ig-fixed {
   position: fixed; right: 28px; bottom: 36px; z-index: 900;
   width: 60px; height: 60px; border-radius: 50%;
-  background: linear-gradient(135deg, #25d366, #128c7e);
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
   color: #fff; display: flex; align-items: center; justify-content: center;
   text-decoration: none;
-  box-shadow: 0 8px 32px rgba(37,211,102,0.4);
+  box-shadow: 0 8px 32px rgba(220,39,67,0.4);
   transition: transform 0.3s, box-shadow 0.3s;
 }
-.wa-fixed::before {
+.ig-fixed::before {
   content: ''; position: absolute; inset: -5px;
-  border-radius: 50%; border: 2px solid rgba(37,211,102,0.35);
+  border-radius: 50%; border: 2px solid rgba(220,39,67,0.35);
   animation: pulse 2.4s ease-out infinite;
 }
-.wa-fixed:hover { transform: scale(1.1) translateY(-4px); box-shadow: 0 14px 40px rgba(37,211,102,0.5); }
+.ig-fixed:hover { transform: scale(1.1) translateY(-4px); box-shadow: 0 14px 40px rgba(220,39,67,0.5); }
 @keyframes pulse { 0%{opacity:1;transform:scale(1)} 100%{opacity:0;transform:scale(1.55)} }
 
 /* ── PAGE HERO ── */
@@ -257,16 +289,17 @@ nav a:hover, nav a.active { color: var(--rose); background: rgba(200,137,106,0.1
 }
 .cta-strip h2 em { font-style: italic; color: var(--blush); }
 .cta-strip p { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-top: 16px; }
-.btn-wa {
+.btn-ig-cta {
   display: flex; align-items: center; gap: 14px;
-  background: #25d366; color: #fff; padding: 18px 40px;
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: #fff; padding: 18px 40px;
   text-decoration: none; font-size: 10px; font-weight: 500;
   letter-spacing: 0.22em; text-transform: uppercase;
   border-radius: 2px;
-  transition: background 0.3s, transform 0.25s, box-shadow 0.3s;
-  box-shadow: 0 8px 24px rgba(37,211,102,0.35); flex-shrink: 0;
+  transition: opacity 0.3s, transform 0.25s, box-shadow 0.3s;
+  box-shadow: 0 8px 24px rgba(220,39,67,0.35); flex-shrink: 0;
 }
-.btn-wa:hover { background: #20c05c; transform: translateY(-2px); box-shadow: 0 14px 36px rgba(37,211,102,0.45); }
+.btn-ig-cta:hover { opacity: 0.92; transform: translateY(-2px); box-shadow: 0 14px 36px rgba(220,39,67,0.45); }
 
 /* ── BUTTONS ── */
 .btn-primary {
@@ -394,7 +427,8 @@ footer .f-right { display: flex; justify-content: flex-end; align-items: center;
 /* ── MOBILE ── */
 @media (max-width: 768px) {
   header { padding: 0 20px; }
-  nav a { font-size: 9px; padding: 6px 10px; letter-spacing: 0.1em; }
+  nav { display: none; }
+  .hbg { display: flex; }
   .page-hero { padding: 110px 24px 64px; min-height: auto; }
   .hero-bg-shape { display: none; }
   .section { padding: 56px 24px; }
@@ -407,7 +441,7 @@ footer .f-right { display: flex; justify-content: flex-end; align-items: center;
   .ig-header { flex-direction: column; text-align: center; padding: 32px 24px; }
   .ig-stats { justify-content: center; }
   .ig-grid { grid-template-columns: repeat(2,1fr); }
-  .wa-fixed { right: 20px; bottom: 24px; width: 54px; height: 54px; }
+  .ig-fixed { right: 20px; bottom: 24px; width: 54px; height: 54px; }
 }
 
 
@@ -420,7 +454,17 @@ footer .f-right { display: flex; justify-content: flex-end; align-items: center;
     <span class="logo-text">MK <em>LissCil</em></span>
   </a>
   <nav><a href="index.html" class="">Accueil</a><a href="extensions.html" class="">Extensions</a><a href="lissages.html" class="">Lissages</a><a href="soins.html" class="active">Soins</a><a href="instagram.html" class=" nav-ig"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> Instagram</a><a href="contact.html" class="">Contact</a></nav>
+  <button class="hbg" id="hbg" aria-label="Menu"><span></span><span></span><span></span></button>
 </header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">Accueil</a>
+  <a href="extensions.html">Extensions</a>
+  <a href="lissages.html">Lissages</a>
+  <a href="soins.html" class="active">Soins</a>
+  <a href="instagram.html"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> Instagram</a>
+  <a href="contact.html">Contact</a>
+</nav>
 
 
 <div class="page-hero">
@@ -459,7 +503,11 @@ footer .f-right { display: flex; justify-content: flex-end; align-items: center;
   </div>
 </section>
 <div class="cta-strip">
-  <div><h2>Prenez soin<br><em>de vos cheveux</em></h2><p>Réservez votre soin sur WhatsApp</p></div>
+  <div><h2>Prenez soin<br><em>de vos cheveux</em></h2><p>Réservez votre soin sur Instagram</p></div>
+  <a href="https://www.instagram.com/mk_lisscil63" target="_blank" rel="noopener" class="btn-ig-cta">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    Nous écrire
+  </a>
 </div>
 
 
@@ -478,9 +526,7 @@ footer .f-right { display: flex; justify-content: flex-end; align-items: center;
 </footer>
 
 
-  ---
-
-  <!-- ═══ FLOATING IG ═══ -->
+<!-- ═══ FLOATING IG ═══ -->
 <a href="https://www.instagram.com/mk_lisscil63" target="_blank" rel="noopener" class="ig-fixed" title="Notre Instagram">
   <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
 </a>
