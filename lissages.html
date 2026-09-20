@@ -451,49 +451,60 @@ footer .f-right { display: flex; justify-content: flex-end; align-items: center;
     <h2 class="s-title">Nos lissages</h2>
   </div>
   <div class="cards-grid">
-   <div class="card-dk reveal">
-  <div class="c-name">Lissage Brésilien</div>
-  <div class="c-desc">Formule kératine douce, respecte la fibre capillaire</div>
-  <div class="c-duration">⏱ 3h30</div>
-  <div class="c-price" style="margin-top:32px;display:flex;align-items:baseline;gap:10px">
-    <span style="font-size:13px;font-family:'DM Sans';font-weight:300;color:rgba(240,213,200,0.6);letter-spacing:0.08em">à partir de</span>
-    150<sup>€</sup>
-    <span style="font-size:20px;color:var(--rose);margin-left:4px">→</span>
-  </div>
+ <!-- Scroll hint flèche -->
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;opacity:0.5">
+  <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold)">défiler</span>
+  <span style="color:var(--gold);font-size:16px">→</span>
 </div>
-<div class="card-dk reveal reveal-d1">
-  <div class="c-name">Lissage Kératine</div>
-  <div class="c-desc">Reconstruction intense, brillance et lissage profond</div>
-  <div class="c-duration">⏱ 3h30</div>
-  <div class="c-price" style="margin-top:32px;display:flex;align-items:baseline;gap:10px">
-    <span style="font-size:13px;font-family:'DM Sans';font-weight:300;color:rgba(240,213,200,0.6);letter-spacing:0.08em">à partir de</span>
-    150<sup>€</sup>
-    <span style="font-size:20px;color:var(--rose);margin-left:4px">→</span>
-  </div>
-</div>
-<div class="card-dk reveal reveal-d2">
-  <div class="c-name">Lissage Tanin</div>
-  <div class="c-desc">100% naturel, végétalien, idéal cheveux sensibles</div>
-  <div class="c-duration">⏱ 3h30</div>
-  <div class="c-price" style="margin-top:32px;display:flex;align-items:baseline;gap:10px">
-    <span style="font-size:13px;font-family:'DM Sans';font-weight:300;color:rgba(240,213,200,0.6);letter-spacing:0.08em">à partir de</span>
-    150<sup>€</sup>
-    <span style="font-size:20px;color:var(--rose);margin-left:4px">→</span>
-  </div>
-</div>
-  </div>
-  <div class="info-box reveal">
-    <div>
-      <h3>Conseils post-lissage</h3>
-      <p>Pour préserver le résultat et prolonger l'effet lissant le plus longtemps possible.</p>
+
+<div style="display:flex;overflow-x:auto;gap:16px;padding-bottom:8px;scrollbar-width:none;-ms-overflow-style:none">
+
+  <div class="card-dk reveal" style="flex:0 0 280px">
+    <div class="c-name">Lissage Brésilien</div>
+    <div class="c-desc">Formule kératine douce, respecte la fibre capillaire</div>
+    <div class="c-duration">⏱ 3h30</div>
+    <div class="c-price" style="margin-top:32px">
+      <span style="font-size:11px;font-family:'DM Sans';font-weight:300;color:rgba(240,213,200,0.6);letter-spacing:0.08em;display:block;margin-bottom:4px">à partir de</span>
+      150<sup>€</sup>
     </div>
-    <ul>
-      <li>Ne pas laver les cheveux pendant 48h après la séance</li>
-      <li>Utiliser des shampoings sans sulfates</li>
-      <li>Éviter les élastiques et attaches</li>
-      <li>Résultat durable 4 à 6 mois selon les cheveux</li>
-    </ul>
   </div>
+
+  <div class="card-dk reveal reveal-d1" style="flex:0 0 280px">
+    <div class="c-name">Lissage Kératine</div>
+    <div class="c-desc">Reconstruction intense, brillance et lissage profond</div>
+    <div class="c-duration">⏱ 3h30</div>
+    <div class="c-price" style="margin-top:32px">
+      <span style="font-size:11px;font-family:'DM Sans';font-weight:300;color:rgba(240,213,200,0.6);letter-spacing:0.08em;display:block;margin-bottom:4px">à partir de</span>
+      150<sup>€</sup>
+    </div>
+  </div>
+
+  <div class="card-dk reveal reveal-d2" style="flex:0 0 280px">
+    <div class="c-name">Lissage Tanin</div>
+    <div class="c-desc">100% naturel, végétalien, idéal cheveux sensibles</div>
+    <div class="c-duration">⏱ 3h30</div>
+    <div class="c-price" style="margin-top:32px">
+      <span style="font-size:11px;font-family:'DM Sans';font-weight:300;color:rgba(240,213,200,0.6);letter-spacing:0.08em;display:block;margin-bottom:4px">à partir de</span>
+      150<sup>€</sup>
+    </div>
+  </div>
+
+  <div class="card-dk reveal reveal-d2" style="flex:0 0 280px">
+    <div class="c-name">Lissage Indien</div>
+    <div class="c-desc">Lissage traditionnel aux huiles précieuses, brillance intense</div>
+    <div class="c-duration">⏱ 3h30</div>
+    <div class="c-price" style="margin-top:32px">
+      <span style="font-size:11px;font-family:'DM Sans';font-weight:300;color:rgba(240,213,200,0.6);letter-spacing:0.08em;display:block;margin-bottom:4px">à partir de</span>
+      150<sup>€</sup>
+    </div>
+  </div>
+
+</div>
+
+<!-- Note cheveux épais -->
+<p style="margin-top:16px;font-size:11px;letter-spacing:0.1em;color:rgba(201,168,124,0.7)">
+  ◆ Supplément cheveux épais : <strong style="color:var(--gold)">+20€</strong>
+</p>
 </section>
 
 <div class="cta-strip">
