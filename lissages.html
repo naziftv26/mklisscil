@@ -433,6 +433,7 @@ footer .f-right { display: flex; justify-content: flex-end; align-items: center;
   </nav>
 </header>
 
+  
 
 <div class="page-hero">
   <div class="hero-bg"></div><div class="hero-bg-shape"></div>
@@ -460,8 +461,64 @@ footer .f-right { display: flex; justify-content: flex-end; align-items: center;
     </div>
   </div>
 
+  <script>
+const hdr = document.getElementById('hdr');
+const toggle = document.getElementById('menuToggle');
+const nav = document.getElementById('mainNav');
+
+window.addEventListener('scroll', () => {
+  hdr.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+toggle.addEventListener('click', () => {
+  toggle.classList.toggle('open');
+  nav.classList.toggle('open');
+});
+
+nav.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    nav.classList.remove('open');
+  });
+});
+
+document.addEventListener('click', (e) => {
+  if (!hdr.contains(e.target)) {
+    toggle.classList.remove('open');
+    nav.classList.remove('open');
+  }
+});
+
+/* ── REVEAL standard ── */
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* ── REVEAL spécial cards scroll ── */
+const track = document.querySelector('.ls-track');
+if (track) {
+  const trackObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const cards = track.querySelectorAll('.reveal');
+        cards.forEach((card, i) => {
+          setTimeout(() => card.classList.add('visible'), i * 120);
+        });
+        trackObs.disconnect();
+      }
+    });
+  }, { threshold: 0.1 });
+  trackObs.observe(track);
+}
+</script>
+
   <!-- Track scrollable -->
   <div style="display:flex;gap:14px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;-ms-overflow-style:none">
+    <div class="ls-track" style="display:flex;gap:14px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;-ms-overflow-style:none">
 
     <div class="reveal" style="flex:0 0 240px;min-width:240px;background:#1a0d07;border:1px solid rgba(201,168,124,0.15);border-radius:3px;padding:32px 28px;position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.3s">
       <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,168,124,0.4);margin-bottom:20px">01</div>
