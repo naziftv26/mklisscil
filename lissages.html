@@ -434,7 +434,6 @@ footer .f-right { display: flex; justify-content: flex-end; align-items: center;
 </header>
 
   
-
 <div class="page-hero">
   <div class="hero-bg"></div><div class="hero-bg-shape"></div>
   <div class="hero-inner">
@@ -461,66 +460,10 @@ footer .f-right { display: flex; justify-content: flex-end; align-items: center;
     </div>
   </div>
 
-  <script>
-const hdr = document.getElementById('hdr');
-const toggle = document.getElementById('menuToggle');
-const nav = document.getElementById('mainNav');
-
-window.addEventListener('scroll', () => {
-  hdr.classList.toggle('scrolled', window.scrollY > 40);
-});
-
-toggle.addEventListener('click', () => {
-  toggle.classList.toggle('open');
-  nav.classList.toggle('open');
-});
-
-nav.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    toggle.classList.remove('open');
-    nav.classList.remove('open');
-  });
-});
-
-document.addEventListener('click', (e) => {
-  if (!hdr.contains(e.target)) {
-    toggle.classList.remove('open');
-    nav.classList.remove('open');
-  }
-});
-
-/* ── REVEAL standard ── */
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
-  });
-}, { threshold: 0.08 });
-
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-/* ── REVEAL spécial cards scroll ── */
-const track = document.querySelector('.ls-track');
-if (track) {
-  const trackObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const cards = track.querySelectorAll('.reveal');
-        cards.forEach((card, i) => {
-          setTimeout(() => card.classList.add('visible'), i * 120);
-        });
-        trackObs.disconnect();
-      }
-    });
-  }, { threshold: 0.1 });
-  trackObs.observe(track);
-}
-</script>
-
   <!-- Track scrollable -->
-  <div style="display:flex;gap:14px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;-ms-overflow-style:none">
-    <div class="ls-track" style="display:flex;gap:14px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;-ms-overflow-style:none">
+  <div class="ls-track" style="display:flex;gap:14px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;-ms-overflow-style:none">
 
-    <div class="reveal" style="flex:0 0 240px;min-width:240px;background:#1a0d07;border:1px solid rgba(201,168,124,0.15);border-radius:3px;padding:32px 28px;position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.3s">
+    <div class="reveal" style="flex:0 0 240px;min-width:240px;background:#1a0d07;border:1px solid rgba(201,168,124,0.15);border-radius:3px;padding:32px 28px;position:relative;overflow:hidden">
       <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,168,124,0.4);margin-bottom:20px">01</div>
       <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#fff;margin-bottom:6px;line-height:1.2">Lissage<br>Brésilien</div>
       <div style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(201,168,124,0.55);line-height:1.8;margin-bottom:24px">Kératine douce<br>Respecte la fibre</div>
@@ -530,7 +473,7 @@ if (track) {
       <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:300;color:#f0d5c8;line-height:1">150<sup style="font-family:'DM Sans';font-size:14px;font-weight:300">€</sup></div>
     </div>
 
-    <div class="reveal reveal-d1" style="flex:0 0 240px;min-width:240px;background:#1a0d07;border:1px solid rgba(201,168,124,0.15);border-radius:3px;padding:32px 28px;position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.3s">
+    <div class="reveal" style="flex:0 0 240px;min-width:240px;background:#1a0d07;border:1px solid rgba(201,168,124,0.15);border-radius:3px;padding:32px 28px;position:relative;overflow:hidden">
       <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,168,124,0.4);margin-bottom:20px">02</div>
       <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#fff;margin-bottom:6px;line-height:1.2">Lissage<br>Kératine</div>
       <div style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(201,168,124,0.55);line-height:1.8;margin-bottom:24px">Reconstruction intense<br>Brillance profonde</div>
@@ -540,7 +483,7 @@ if (track) {
       <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:300;color:#f0d5c8;line-height:1">150<sup style="font-family:'DM Sans';font-size:14px;font-weight:300">€</sup></div>
     </div>
 
-    <div class="reveal reveal-d2" style="flex:0 0 240px;min-width:240px;background:#1a0d07;border:1px solid rgba(201,168,124,0.15);border-radius:3px;padding:32px 28px;position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.3s">
+    <div class="reveal" style="flex:0 0 240px;min-width:240px;background:#1a0d07;border:1px solid rgba(201,168,124,0.15);border-radius:3px;padding:32px 28px;position:relative;overflow:hidden">
       <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,168,124,0.4);margin-bottom:20px">03</div>
       <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#fff;margin-bottom:6px;line-height:1.2">Lissage<br>Tanin</div>
       <div style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(201,168,124,0.55);line-height:1.8;margin-bottom:24px">100% naturel<br>Idéal cheveux sensibles</div>
@@ -550,7 +493,7 @@ if (track) {
       <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:300;color:#f0d5c8;line-height:1">150<sup style="font-family:'DM Sans';font-size:14px;font-weight:300">€</sup></div>
     </div>
 
-    <div class="reveal reveal-d2" style="flex:0 0 240px;min-width:240px;background:#1a0d07;border:1px solid rgba(201,168,124,0.15);border-radius:3px;padding:32px 28px;position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.3s">
+    <div class="reveal" style="flex:0 0 240px;min-width:240px;background:#1a0d07;border:1px solid rgba(201,168,124,0.15);border-radius:3px;padding:32px 28px;position:relative;overflow:hidden">
       <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,168,124,0.4);margin-bottom:20px">04</div>
       <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#fff;margin-bottom:6px;line-height:1.2">Lissage<br>Indien</div>
       <div style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(201,168,124,0.55);line-height:1.8;margin-bottom:24px">Huiles précieuses<br>Brillance intense</div>
@@ -560,7 +503,7 @@ if (track) {
       <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:300;color:#f0d5c8;line-height:1">150<sup style="font-family:'DM Sans';font-size:14px;font-weight:300">€</sup></div>
     </div>
 
-  </div>
+  </div><!-- fin ls-track -->
 
   <!-- Supplément Option A -->
   <div class="reveal" style="margin-top:24px;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:linear-gradient(120deg,#2e1a14,#3a2018);border-left:3px solid #c8896a">
@@ -650,5 +593,63 @@ const obs = new IntersectionObserver((entries) => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
+  <script>
+const hdr = document.getElementById('hdr');
+const toggle = document.getElementById('menuToggle');
+const nav = document.getElementById('mainNav');
+
+window.addEventListener('scroll', () => {
+  hdr.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+toggle.addEventListener('click', () => {
+  toggle.classList.toggle('open');
+  nav.classList.toggle('open');
+});
+
+nav.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    nav.classList.remove('open');
+  });
+});
+
+document.addEventListener('click', (e) => {
+  if (!hdr.contains(e.target)) {
+    toggle.classList.remove('open');
+    nav.classList.remove('open');
+  }
+});
+
+/* REVEAL standard pour tous les éléments hors track */
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.reveal').forEach(el => {
+  if (!el.closest('.ls-track')) obs.observe(el);
+});
+
+/* REVEAL spécial pour les cards dans le track scrollable */
+const track = document.querySelector('.ls-track');
+if (track) {
+  const trackObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        track.querySelectorAll('.reveal').forEach((card, i) => {
+          setTimeout(() => card.classList.add('visible'), i * 120);
+        });
+        trackObs.disconnect();
+      }
+    });
+  }, { threshold: 0.1 });
+  trackObs.observe(track);
+}
+</script>
+</body>
+</html>
+
 </body>
 </html>
