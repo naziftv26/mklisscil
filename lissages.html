@@ -445,74 +445,68 @@ footer .f-right { display: flex; justify-content: flex-end; align-items: center;
 
 <div class="divider"></div>
 
-<section class="section">
-  <div class="s-head reveal">
-    <div class="s-eyebrow">Formules</div>
-    <h2 class="s-title">Nos lissages</h2>
+<!-- Scroll hint -->
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+  <span style="font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(201,168,124,0.7)">Nos formules</span>
+  <div style="display:flex;align-items:center;gap:4px">
+    <div style="height:1px;width:28px;background:linear-gradient(to right,rgba(201,168,124,0.3),#c9a87c)"></div>
+    <span style="color:#c9a87c;font-size:14px;opacity:0.7">›</span>
+  </div>
+</div>
+
+<!-- Track scrollable -->
+<div style="display:flex;gap:14px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;-ms-overflow-style:none">
+
+  <div class="ls-card" style="flex:0 0 240px;min-width:240px;background:#1a0d07;border:1px solid rgba(201,168,124,0.15);border-radius:3px;padding:32px 28px;position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.3s">
+    <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,168,124,0.4);margin-bottom:20px">01</div>
+    <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#fff;margin-bottom:6px;line-height:1.2">Lissage<br>Brésilien</div>
+    <div style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(201,168,124,0.55);line-height:1.8;margin-bottom:24px">Kératine douce<br>Respecte la fibre</div>
+    <div style="height:1px;background:rgba(201,168,124,0.12);margin-bottom:20px"></div>
+    <div style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(201,168,124,0.5);margin-bottom:16px">⏱ 3h30</div>
+    <div style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(240,213,200,0.4);margin-bottom:2px">à partir de</div>
+    <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:300;color:#f0d5c8;line-height:1">150<sup style="font-family:'DM Sans';font-size:14px;font-weight:300">€</sup></div>
   </div>
 
-  <!-- Scroll hint -->
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;opacity:0.5">
-    <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold)">défiler</span>
-    <span style="color:var(--gold);font-size:16px">→</span>
+  <div style="flex:0 0 240px;min-width:240px;background:#1a0d07;border:1px solid rgba(201,168,124,0.15);border-radius:3px;padding:32px 28px">
+    <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,168,124,0.4);margin-bottom:20px">02</div>
+    <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#fff;margin-bottom:6px;line-height:1.2">Lissage<br>Kératine</div>
+    <div style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(201,168,124,0.55);line-height:1.8;margin-bottom:24px">Reconstruction intense<br>Brillance profonde</div>
+    <div style="height:1px;background:rgba(201,168,124,0.12);margin-bottom:20px"></div>
+    <div style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(201,168,124,0.5);margin-bottom:16px">⏱ 3h30</div>
+    <div style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(240,213,200,0.4);margin-bottom:2px">à partir de</div>
+    <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:300;color:#f0d5c8;line-height:1">150<sup style="font-family:'DM Sans';font-size:14px;font-weight:300">€</sup></div>
   </div>
 
-  <!-- Cards scrollables — remplace cards-grid -->
-  <div style="display:flex;overflow-x:auto;gap:16px;padding-bottom:8px;scrollbar-width:none;-ms-overflow-style:none;">
-
-    <div class="card-dk reveal" style="flex:0 0 280px;min-width:280px">
-      <div class="c-name">Lissage Brésilien</div>
-      <div class="c-desc">Formule kératine douce, respecte la fibre capillaire</div>
-      <div class="c-duration">⏱ 3h30</div>
-      <div class="c-price" style="margin-top:32px">
-        <span style="font-size:11px;font-family:'DM Sans';font-weight:300;color:rgba(240,213,200,0.6);letter-spacing:0.08em;display:block;margin-bottom:4px">à partir de</span>
-        150<sup>€</sup>
-      </div>
-    </div>
-
-    <div class="card-dk reveal reveal-d1" style="flex:0 0 280px;min-width:280px">
-      <div class="c-name">Lissage Kératine</div>
-      <div class="c-desc">Reconstruction intense, brillance et lissage profond</div>
-      <div class="c-duration">⏱ 3h30</div>
-      <div class="c-price" style="margin-top:32px">
-        <span style="font-size:11px;font-family:'DM Sans';font-weight:300;color:rgba(240,213,200,0.6);letter-spacing:0.08em;display:block;margin-bottom:4px">à partir de</span>
-        150<sup>€</sup>
-      </div>
-    </div>
-
-    <div class="card-dk reveal reveal-d2" style="flex:0 0 280px;min-width:280px">
-      <div class="c-name">Lissage Tanin</div>
-      <div class="c-desc">100% naturel, végétalien, idéal cheveux sensibles</div>
-      <div class="c-duration">⏱ 3h30</div>
-      <div class="c-price" style="margin-top:32px">
-        <span style="font-size:11px;font-family:'DM Sans';font-weight:300;color:rgba(240,213,200,0.6);letter-spacing:0.08em;display:block;margin-bottom:4px">à partir de</span>
-        150<sup>€</sup>
-      </div>
-    </div>
-
-    <div class="card-dk reveal" style="flex:0 0 280px;min-width:280px">
-      <div class="c-name">Lissage Indien</div>
-      <div class="c-desc">Lissage traditionnel aux huiles précieuses, brillance intense</div>
-      <div class="c-duration">⏱ 3h30</div>
-      <div class="c-price" style="margin-top:32px">
-        <span style="font-size:11px;font-family:'DM Sans';font-weight:300;color:rgba(240,213,200,0.6);letter-spacing:0.08em;display:block;margin-bottom:4px">à partir de</span>
-        150<sup>€</sup>
-      </div>
-    </div>
-
+  <div style="flex:0 0 240px;min-width:240px;background:#1a0d07;border:1px solid rgba(201,168,124,0.15);border-radius:3px;padding:32px 28px">
+    <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,168,124,0.4);margin-bottom:20px">03</div>
+    <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#fff;margin-bottom:6px;line-height:1.2">Lissage<br>Tanin</div>
+    <div style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(201,168,124,0.55);line-height:1.8;margin-bottom:24px">100% naturel<br>Idéal cheveux sensibles</div>
+    <div style="height:1px;background:rgba(201,168,124,0.12);margin-bottom:20px"></div>
+    <div style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(201,168,124,0.5);margin-bottom:16px">⏱ 3h30</div>
+    <div style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(240,213,200,0.4);margin-bottom:2px">à partir de</div>
+    <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:300;color:#f0d5c8;line-height:1">150<sup style="font-family:'DM Sans';font-size:14px;font-weight:300">€</sup></div>
   </div>
 
-  <!-- Note cheveux épais -->
-  <p style="margin-top:16px;font-size:11px;letter-spacing:0.1em;color:rgba(201,168,124,0.7)">
-    ◆ Supplément cheveux épais : <strong style="color:var(--gold)">+20€</strong>
-  </p>
-
-  <div class="info-box reveal">
-    ...
+  <div style="flex:0 0 240px;min-width:240px;background:#1a0d07;border:1px solid rgba(201,168,124,0.15);border-radius:3px;padding:32px 28px">
+    <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,168,124,0.4);margin-bottom:20px">04</div>
+    <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#fff;margin-bottom:6px;line-height:1.2">Lissage<br>Indien</div>
+    <div style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(201,168,124,0.55);line-height:1.8;margin-bottom:24px">Huiles précieuses<br>Brillance intense</div>
+    <div style="height:1px;background:rgba(201,168,124,0.12);margin-bottom:20px"></div>
+    <div style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(201,168,124,0.5);margin-bottom:16px">⏱ 3h30</div>
+    <div style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(240,213,200,0.4);margin-bottom:2px">à partir de</div>
+    <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:300;color:#f0d5c8;line-height:1">150<sup style="font-family:'DM Sans';font-size:14px;font-weight:300">€</sup></div>
   </div>
 
-</section>
+</div>
 
+<!-- Supplément bien visible -->
+<div style="margin-top:24px;display:inline-flex;align-items:center;gap:12px;padding:12px 20px;background:linear-gradient(135deg,rgba(200,137,106,0.12),rgba(201,168,124,0.08));border:1px solid rgba(200,137,106,0.3);border-radius:2px">
+  <div style="width:6px;height:6px;border-radius:50%;background:#c8896a;flex-shrink:0"></div>
+  <span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(240,213,200,0.7)">Supplément cheveux épais</span>
+  <span style="font-family:'Playfair Display',serif;font-size:16px;color:#c8896a;font-weight:400;margin-left:8px">+ 20€</span>
+</div>
+
+  
   
 
 <div class="cta-strip">
